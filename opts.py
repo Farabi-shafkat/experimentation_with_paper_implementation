@@ -11,7 +11,7 @@ from PIL import Image
 from opts import *
 from scipy.io import loadmat
 
-main_datasets_dir="dataset/videos"
+main_datasets_dir="/content/content/dataset"
 input_resize = 171,128
 C,H,W = 3, 112, 112
 randomseed=42
@@ -29,3 +29,6 @@ log_save_directory="logs"
 graph_save_directory="graphs"
 
 model_saving_dir = "experimental_models"
+
+
+google_drive_dir="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation"

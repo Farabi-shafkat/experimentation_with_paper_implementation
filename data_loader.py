@@ -57,9 +57,9 @@ class VideoDataset(Dataset):
         super(VideoDataset, self).__init__()
         self.mode = mode
         if self.mode == 'train':
-            trains_list = np.load('dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/train_split_0.pkl',allow_pickle=True)
-            dic=np.load('dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/final_annotations_dict.pkl',allow_pickle=True)
-            captions=np.load('dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/final_captions_dict.pkl',allow_pickle=True)
+            trains_list = np.load('content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/train_split_0.pkl',allow_pickle=True)
+            dic=np.load('content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/final_annotations_dict.pkl',allow_pickle=True)
+            captions=np.load('content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/final_captions_dict.pkl',allow_pickle=True)
 
             self.annotations = []
             for key in trains_list:
@@ -67,9 +67,9 @@ class VideoDataset(Dataset):
             
         else:
             #self.annotations = loadmat('input/consolidated_test_list.mat').get('consolidated_test_list')
-            test_list = np.load('dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/test_split_0.pkl',allow_pickle=True)
-            dic=np.load('dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/final_annotations_dict.pkl',allow_pickle=True)
-            captions=np.load('dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/final_captions_dict.pkl',allow_pickle=True)
+            test_list = np.load('content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/test_split_0.pkl',allow_pickle=True)
+            dic=np.load('content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/final_annotations_dict.pkl',allow_pickle=True)
+            captions=np.load('content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/dataset/MTL-AQA/MTL-AQA_dataset_release/Ready_2_Use/MTL-AQA_split_0_data/final_captions_dict.pkl',allow_pickle=True)
 
             self.annotations = []
             for key in test_list:
@@ -93,7 +93,7 @@ class VideoDataset(Dataset):
 
         image_list=[]
         for cur in range(start_frame,(end_frame+1)):
-             image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}'.format(sample[0]), '{:d}.jpg'.format(cur)))
+             image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
         image_list=sorted(image_list)
        # print("before ",len(image_list))
         final_image_list=[]
