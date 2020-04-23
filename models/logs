@@ -1,0 +1,143 @@
+True looook
+No. of samples:  1059
+No. of samples:  1059
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  0  Iter:  0  Loss:  tensor(5638.7510, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  0  Iter:  50  Loss:  tensor(3586.5554, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  0  Iter:  100  Loss:  tensor(4673.9922, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  0  Iter:  150  Loss:  tensor(3064.3730, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  0  Iter:  200  Loss:  tensor(3037.4514, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  0  Iter:  250  Loss:  tensor(2042.3650, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  0  Iter:  300  Loss:  tensor(3210.5203, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  0  Iter:  350  Loss:  tensor(2413.7046, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.07482666403053505
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  1  Iter:  0  Loss:  tensor(2411.3059, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  1  Iter:  50  Loss:  tensor(938.5944, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  1  Iter:  100  Loss:  tensor(2349.1282, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  1  Iter:  150  Loss:  tensor(2443.0920, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  1  Iter:  200  Loss:  tensor(1560.9675, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  1  Iter:  250  Loss:  tensor(2052.4189, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  1  Iter:  300  Loss:  tensor(1863.2817, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  1  Iter:  350  Loss:  tensor(484.4957, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.07192131197706852
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  2  Iter:  0  Loss:  tensor(1601.6604, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  2  Iter:  50  Loss:  tensor(922.7359, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  2  Iter:  100  Loss:  tensor(1693.4617, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  2  Iter:  150  Loss:  tensor(871.2474, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  2  Iter:  200  Loss:  tensor(779.5908, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  2  Iter:  250  Loss:  tensor(434.2765, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  2  Iter:  300  Loss:  tensor(493.1057, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  2  Iter:  350  Loss:  tensor(1330.7799, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.06979789721196572
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  3  Iter:  0  Loss:  tensor(653.9782, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  3  Iter:  50  Loss:  tensor(447.5705, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  3  Iter:  100  Loss:  tensor(478.9573, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  3  Iter:  150  Loss:  tensor(243.2144, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  3  Iter:  200  Loss:  tensor(669.9587, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  3  Iter:  250  Loss:  tensor(189.3049, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  3  Iter:  300  Loss:  tensor(463.0663, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  3  Iter:  350  Loss:  tensor(252.4226, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.07938675965986527
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  4  Iter:  0  Loss:  tensor(398.9474, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  4  Iter:  50  Loss:  tensor(766.4791, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  4  Iter:  100  Loss:  tensor(470.3268, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  4  Iter:  150  Loss:  tensor(361.7276, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  4  Iter:  200  Loss:  tensor(371.9724, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  4  Iter:  250  Loss:  tensor(247.5309, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  4  Iter:  300  Loss:  tensor(224.9817, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  4  Iter:  350  Loss:  tensor(138.5875, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.09278038623676678
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  5  Iter:  0  Loss:  tensor(680.6377, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  5  Iter:  50  Loss:  tensor(197.1426, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  5  Iter:  100  Loss:  tensor(373.6119, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  5  Iter:  150  Loss:  tensor(99.9898, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  5  Iter:  200  Loss:  tensor(122.2586, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  5  Iter:  250  Loss:  tensor(301.4046, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  5  Iter:  300  Loss:  tensor(438.2673, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  5  Iter:  350  Loss:  tensor(177.8745, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.10051694007764739
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  6  Iter:  0  Loss:  tensor(109.8790, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  6  Iter:  50  Loss:  tensor(228.6683, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  6  Iter:  100  Loss:  tensor(416.1972, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  6  Iter:  150  Loss:  tensor(539.3143, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  6  Iter:  200  Loss:  tensor(297.9737, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  6  Iter:  250  Loss:  tensor(536.5142, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  6  Iter:  300  Loss:  tensor(247.8445, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  6  Iter:  350  Loss:  tensor(124.2698, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.12115771043551665
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  7  Iter:  0  Loss:  tensor(345.5348, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  7  Iter:  50  Loss:  tensor(86.3305, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  7  Iter:  100  Loss:  tensor(588.3280, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  7  Iter:  150  Loss:  tensor(49.9826, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  7  Iter:  200  Loss:  tensor(575.3409, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  7  Iter:  250  Loss:  tensor(221.0973, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  7  Iter:  300  Loss:  tensor(278.6271, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  7  Iter:  350  Loss:  tensor(371.8314, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.12709871468385386
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  8  Iter:  0  Loss:  tensor(372.2057, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  8  Iter:  50  Loss:  tensor(350.1242, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  8  Iter:  100  Loss:  tensor(430.1783, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  8  Iter:  150  Loss:  tensor(12.8886, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  8  Iter:  200  Loss:  tensor(169.0677, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  8  Iter:  250  Loss:  tensor(41.1095, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  8  Iter:  300  Loss:  tensor(414.5690, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  8  Iter:  350  Loss:  tensor(453.4405, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.1394833679144895
+-------------------------------------------------------------------------------------------------------
+No. of samples:  1059
+Epoch:  9  Iter:  0  Loss:  tensor(129.7983, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  9  Iter:  50  Loss:  tensor(292.5793, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  9  Iter:  100  Loss:  tensor(467.9436, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  9  Iter:  150  Loss:  tensor(95.6217, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  9  Iter:  200  Loss:  tensor(177.9830, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  9  Iter:  250  Loss:  tensor(18.5382, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  9  Iter:  300  Loss:  tensor(454.6875, device='cuda:0', grad_fn=<AddBackward0>) 
+Epoch:  9  Iter:  350  Loss:  tensor(320.0618, device='cuda:0', grad_fn=<AddBackward0>) 
+No. of samples:  353
+iteration : 50
+iteration : 100
+Correlation:  0.146936672442747
