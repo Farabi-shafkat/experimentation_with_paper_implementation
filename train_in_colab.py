@@ -263,7 +263,7 @@ if __name__ == '__main__':
     init_epoch=None
     print(torch.cuda.is_available(),"started" )
     if in_colab==False:
-        model_CNN_pretrained_dict = torch.load('content/c3d.pickle')
+        model_CNN_pretrained_dict = torch.load('/content/c3d.pickle')
         init_epoch=0
     
     
@@ -272,9 +272,9 @@ if __name__ == '__main__':
         graph_save_directory=os.path.join(google_drive_dir,graph_save_directory)
         model_saving_dir=os.path.join(google_drive_dir,model_saving_dir)
        # main_datasets_dir="/content"
-        init_epoch=load_status()
-        if epoch ==0:
-             model_CNN_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/c3d.pickle')
+        init_epoch=11
+        if init_epoch ==0:
+             model_CNN_pretrained_dict = torch.load('/content/c3d.pickle')
         else:
             model_CNN_pretrained_dict = torch.load('experimental_models/model_CNN{}.pth'.format(init_epoch))
             model_avg_FC_pretrained_dict = torch.load('experimental_models/model_avg_fc{}.pth'.format(init_epoch))
