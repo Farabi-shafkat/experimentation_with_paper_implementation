@@ -24,11 +24,12 @@ num_epochs = 20
 sample_length = 96
 device=torch.cuda
 
-log_save_directory="logs"
-
-graph_save_directory="graphs"
-
-model_saving_dir = "experimental_models"
-
+#log_save_directory="logs"
+log_save_directory="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/logs"
+#graph_save_directory="graphs"
+graph_save_directory="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/graphs"
+model_saving_dir="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_models"
+#model_saving_dir = "experimental_models"
+#/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/
 
 google_drive_dir="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation"

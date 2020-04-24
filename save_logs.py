@@ -8,7 +8,7 @@ from datetime import datetime
 
 def save_logs(epoch,iteration,loss_statistics):
     time = str(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'))
-    directory = os.path.join(log_save_directory)
+    directory = os.path.join(log_save_directory,"logs.txt")
 
     str1 = "{}      epoch:{}.....iteration: {}.............timesatmp:{}\n".format(loss_statistics["mode"],epoch,iteration,time)
     L=[str1]

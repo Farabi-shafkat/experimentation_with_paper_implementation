@@ -13,8 +13,8 @@ from datetime import datetime
 from opts import *
 from make_graph import graph
 from save_logs import *
-
-
+from save_status import *
+import timeit
 torch.manual_seed(randomseed); torch.cuda.manual_seed_all(randomseed); random.seed(randomseed); np.random.seed(randomseed)
 torch.backends.cudnn.deterministic=True
 
@@ -131,6 +131,7 @@ def test_phase(test_dataloader,epoch,l1,l2,action_criterions):
         iteration = 0
 
         for data in test_dataloader:
+            
             true_final_score = data['label_final_score'].unsqueeze_(1).type(torch.FloatTensor).cuda()
             true_scores.extend(data['label_final_score'].data.numpy())
             video = data['video'].transpose_(1, 2).cuda()
@@ -202,7 +203,7 @@ def test_phase(test_dataloader,epoch,l1,l2,action_criterions):
         
 
 
-def main():
+def main(init_epoch):
     parameter_list=list(model_CNN.parameters())+list(model_avg_fc.parameters())+list(model_reg.parameters())#+list(model_class.parameters())
     
     parameters_to_optimize = parameter_list
@@ -227,9 +228,9 @@ def main():
     test_dataloader = DataLoader(test_dataset, batch_size=test_batch_size, shuffle=False)
     grph = graph()
 
-    for epoch in range(num_epochs):
+    for epoch in range(init_epoch,num_epochs):
         
-       
+        start = timeit.default_timer()
         
         print('-------------------------------------------------------------------------------------------------------')
         
@@ -240,11 +241,13 @@ def main():
         grph.update_graph(tr_loss,ts_loss)
          #if epoch == 0:  # save models every 5 epochs
         grph.draw_and_save()
-        if epoch%4==0 or epoch==num_epochs-1 :
-            save_model(model_CNN, 'model_CNN_relu', model_saving_dir,epoch)
-            save_model(model_avg_fc, 'model_avg_fc_relu', model_saving_dir,epoch)
-            save_model(model_reg, 'model_reg_relu', model_saving_dir,epoch)
-            save_model(model_class, 'model_class_relu', model_saving_dir,epoch)
+       # if epoch%4==0 or epoch==num_epochs-1 :
+        save_model(model_CNN, 'model_CNN', model_saving_dir,epoch)
+        save_model(model_avg_fc, 'model_avg_fc', model_saving_dir,epoch)
+        save_model(model_reg, 'model_reg', model_saving_dir,epoch)
+        save_model(model_class, 'model_class', model_saving_dir,epoch)
+        stop = timeit.default_timer()
+        print("time taken each epoch {} seconds".format(stop-start))
     grph.draw_and_save()
 
 
@@ -255,22 +258,32 @@ if __name__ == '__main__':
     # loading the altered C3D (ie C3D upto before fc-6)
    # os.environ["CUDA_VISIBLE_cudaS"] = '0'
    # set_start_time1(str(datetime.today().strftime('%Y-%m-%d-%H:%M:%S')))
-    is_pretrained = False
+    in_colab = True
     model_CNN_pretrained_dict = None
     model_avg_FC_pretrained_dict = None
     model_class_pretrained_dict = None
     model_reg_pretrained_dict = None
+    init_epoch=None
     print(torch.cuda.is_available(),"started" )
-    if is_pretrained==False:
-        model_CNN_pretrained_dict = torch.load('c3d.pickle')
-    
+    if in_colab==False:
+        model_CNN_pretrained_dict = torch.load('/content/c3d.pickle')
+        init_epoch=0
     
     
     else :
-        model_CNN_pretrained_dict = torch.load('experimental_models/model_CNN_relu4.pth')
-        model_avg_FC_pretrained_dict = torch.load('experimental_models/model_avg_fc_relu4.pth')
-        model_reg_pretrained_dict = torch.load('experimental_models/model_reg_relu4.pth')
-        model_class_pretrained_dict = torch.load('experimental_models/model_class_relu4.pth')
+        log_save_directory=os.path.join(google_drive_dir,log_save_directory)
+        graph_save_directory=os.path.join(google_drive_dir,graph_save_directory)
+        model_saving_dir=os.path.join(google_drive_dir,model_saving_dir)
+       # main_datasets_dir="/content"
+        init_epoch=load_status()
+        if init_epoch ==0:
+             model_CNN_pretrained_dict = torch.load('/content/c3d.pickle')
+        else:
+            init_epoch+=1
+            model_CNN_pretrained_dict = torch.load('experimental_models/model_CNN{}.pth'.format(init_epoch))
+            model_avg_FC_pretrained_dict = torch.load('experimental_models/model_avg_fc{}.pth'.format(init_epoch))
+            model_reg_pretrained_dict = torch.load('experimental_models/model_reg{}.pth'.format(init_epoch))
+            model_class_pretrained_dict = torch.load('experimental_models/model_class{}.pth'.format(init_epoch))
 
     model_CNN = C3D()
     model_CNN_dict = model_CNN.state_dict()
@@ -281,22 +294,22 @@ if __name__ == '__main__':
    # print(model_CNN_pretrained_dict.keys())
     model_CNN_dict.update(model_CNN_pretrained_dict)
     model_CNN.load_state_dict(model_CNN_dict)
-    model_CNN = model_CNN.cuda(0)
+    model_CNN = model_CNN.cuda()
 
    
     model_avg_fc = AVG_FC()
-    if is_pretrained==True:
+    if init_epoch!=0:
         model_avg_fc.load_state_dict(model_avg_FC_pretrained_dict)
-    model_avg_fc  = model_avg_fc.cuda(0)
+    model_avg_fc  = model_avg_fc.cuda()
 
     model_reg =linearRegression()
-    if is_pretrained==True:
+    if init_epoch!=0:
         model_reg.load_state_dict(model_reg_pretrained_dict)
-    model_reg =model_reg.cuda(0)
+    model_reg =model_reg.cuda()
     
     model_class=classficatiion()
-    if is_pretrained==True:
+    if init_epoch!=0:
         model_class.load_state_dict(model_class_pretrained_dict)
-    model_class =model_class.cuda(0)
+    model_class =model_class.cuda()
 
-    main()
+    main(init_epoch)
