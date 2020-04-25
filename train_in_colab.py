@@ -255,7 +255,7 @@ if __name__ == '__main__':
     # loading the altered C3D (ie C3D upto before fc-6)
    # os.environ["CUDA_VISIBLE_cudaS"] = '0'
    # set_start_time1(str(datetime.today().strftime('%Y-%m-%d-%H:%M:%S')))
-    in_colab = False
+    in_colab = True
     model_CNN_pretrained_dict = None
     model_avg_FC_pretrained_dict = None
     model_class_pretrained_dict = None
