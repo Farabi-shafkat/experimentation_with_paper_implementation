@@ -1,3 +1,5 @@
+#####run in colab
+
 import os
 import torch
 from torch.utils.data import DataLoader
@@ -15,8 +17,8 @@ from make_graph import graph
 from save_logs import *
 from save_status import *
 
-torch.manual_seed(randomseed); torch.cuda.manual_seed_all(randomseed); random.seed(randomseed); np.random.seed(randomseed)
-torch.backends.cudnn.deterministic=True
+#torch.manual_seed(randomseed); torch.cuda.manual_seed_all(randomseed); random.seed(randomseed); np.random.seed(randomseed)
+#torch.backends.cudnn.deterministic=True
 
 
 
@@ -39,6 +41,7 @@ def train_phase(train_dataloader, optimizer, epoch,l1,l2,action_criterions):
     ret=0
     #print(train_dataloader,"Ssssssssssss............................")
     for data in train_dataloader:
+        increment_seed()
         #print(data,"Ssssssssssss............................")
         #print(data["action"],"....................")
         with torch.no_grad():
@@ -229,8 +232,9 @@ def main(init_epoch):
 
     for epoch in range(init_epoch+1,num_epochs):
         
-       
         
+       
+        increment_seed()
         print('-------------------------------------------------------------------------------------------------------')
         
         #train_phase(train_dataloader, optimizer, criterion, epoch)
@@ -255,7 +259,7 @@ if __name__ == '__main__':
     # loading the altered C3D (ie C3D upto before fc-6)
    # os.environ["CUDA_VISIBLE_cudaS"] = '0'
    # set_start_time1(str(datetime.today().strftime('%Y-%m-%d-%H:%M:%S')))
-    in_colab = True
+    in_colab = False
     model_CNN_pretrained_dict = None
     model_avg_FC_pretrained_dict = None
     model_class_pretrained_dict = None

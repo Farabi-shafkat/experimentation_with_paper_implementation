@@ -1,5 +1,4 @@
-
-
+###opts
 import random
 import os
 import numpy as np
@@ -18,7 +17,7 @@ randomseed=42
 alpha=1
 beta=1
 gamma= 0.01
-train_batch_size = 2
+train_batch_size = 3
 test_batch_size = 3
 num_epochs = 20
 sample_length = 96
@@ -33,3 +32,7 @@ model_saving_dir="/content/drive/My Drive/what_and_how_well_you_learned_paper_im
 #/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/
 
 google_drive_dir="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation"
+def increment_seed():
+    global randomseed
+    
+    randomseed+=1

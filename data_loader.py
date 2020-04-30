@@ -11,8 +11,8 @@ from PIL import Image
 from opts import *
 from scipy.io import loadmat
 
-torch.manual_seed(randomseed); torch.cuda.manual_seed_all(randomseed); random.seed(randomseed); np.random.seed(randomseed)
-torch.backends.cudnn.deterministic=True
+#torch.manual_seed(randomseed); torch.cuda.manual_seed_all(randomseed); random.seed(randomseed); np.random.seed(randomseed)
+#torch.backends.cudnn.deterministic=True
 
 def load_image_train(image_path, hori_flip, transform=None):
     image = Image.open(image_path)
@@ -92,7 +92,9 @@ class VideoDataset(Dataset):
 
 
         image_list=[]
-        for cur in range(start_frame,(end_frame+1)):
+        index_list=np.random.choice(np.arrange(start_frame,end_frame+1),size=96)
+        
+        for cur in index_list:
              image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
         image_list=sorted(image_list)
        # print("before ",len(image_list))
@@ -161,4 +163,3 @@ if __name__=="__main__":
             cv2.imshow('preview', image)
             cv2.waitKey('a')
             
-
