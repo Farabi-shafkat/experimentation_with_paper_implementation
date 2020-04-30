@@ -92,10 +92,16 @@ class VideoDataset(Dataset):
 
 
         image_list=[]
-        index_list=np.random.choice(np.arrange(start_frame,end_frame+1),size=96)
-        
-        for cur in index_list:
-             image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
+        if self.mode=='train':
+            index_list=np.random.choice(np.arange(start_frame,end_frame+1),size=96)
+
+            for cur in index_list:
+                image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
+        else:
+            #index_list=np.random.choice(np.arange(start_frame,end_frame+1),size=96)
+
+            for cur in range(start_frame,end_frame+1):
+                image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
         image_list=sorted(image_list)
        # print("before ",len(image_list))
         final_image_list=[]
@@ -155,11 +161,4 @@ class VideoDataset(Dataset):
 if __name__=="__main__":
     dataset=VideoDataset('test')
     for data in dataset:
-        for image in  data['video']:
-            cv2.startWindowThread()
-            cv2.namedWindow("preview")
-            image = np.array(image)
-
-            cv2.imshow('preview', image)
-            cv2.waitKey('a')
-            
+        
