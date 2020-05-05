@@ -1,5 +1,4 @@
 
-
 import random
 import os
 import numpy as np
@@ -94,13 +93,13 @@ class VideoDataset(Dataset):
            # index_list=np.random.choice(np.arange(start_frame,end_frame+1),size=96)
             num_frames = end_frame-start_frame+1
             if num_frames > 96:
-                start = np.choice(np.arange(start_frame,end_frame-95),1)
+                start = np.random.choice(np.arange(start_frame,end_frame-95),1)
                 index_list = np.arange(start,start+96)
             else:
                 index_list = np.arange(start_frame,end_frame+1)
                 shortage = 96-num_frames
-                dup = np.choice(np.arange(start_frame,end_frame+1),1)   
-                index_list = sorted(index_list + dup)
+                dup = np.random.choice(np.arange(start_frame,end_frame+1),shortage)   
+                index_list = sorted(list(index_list) + list(dup))
 
 
             for cur in index_list:

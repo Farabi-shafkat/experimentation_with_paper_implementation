@@ -13,7 +13,7 @@ class AVG_FC(nn.Module):
         self.dropout = nn.Dropout(p=0.2)
     def forward(self, x):   
        
-        x = F.relu(self.dropout(self.fc(x)))
+        x = F.relu(self.dropout(self.fc(F.relu(x))))
         return x
 
 
