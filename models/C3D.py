@@ -18,6 +18,7 @@
 import torch
 import torch.nn as nn
 from opts import *
+import torch.nn.functional as F
 class C3D(nn.Module):
     """
     The C3D network as described in [1].
@@ -83,7 +84,7 @@ class C3D(nn.Module):
 
         # logits = self.fc8(h)
         # probs = self.softmax(logits)
-        h= F.relu(h)
+      #  h= F.relu(h)
         return h
 
 """

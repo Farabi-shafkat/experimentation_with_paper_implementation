@@ -83,7 +83,7 @@ def train_phase(train_dataloader, optimizer, epoch,l1,l2,action_criterions):
         features =model_avg_fc(clip_feats) # clip feats has the cip features in axis 1
         pred_final_score=model_reg(features)
         pred_final_score=pred_final_score.view(batch_size_now,-1)       
-        aqa_loss = l2(pred_final_score, true_final_score)#+l1(pred_final_score, true_final_score)
+        aqa_loss = l2(pred_final_score, true_final_score)+l1(pred_final_score, true_final_score)
 
 
         #pos,tw,rot,ss,arm=model_class(features)
