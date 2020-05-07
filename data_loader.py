@@ -9,7 +9,8 @@ import glob
 from PIL import Image
 from opts import *
 from scipy.io import loadmat
-
+from random import randint
+import math 
 #torch.manual_seed(randomseed); torch.cuda.manual_seed_all(randomseed); random.seed(randomseed); np.random.seed(randomseed)
 #torch.backends.cudnn.deterministic=True
 
@@ -86,17 +87,24 @@ class VideoDataset(Dataset):
                                         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
  
         
-
+##########################
 
         image_list=[]
         if self.mode=='train':
            # index_list=np.random.choice(np.arange(start_frame,end_frame+1),size=96)
             num_frames = end_frame-start_frame+1
             if num_frames > 96:
-                start = np.random.choice(np.arange(start_frame,end_frame-95),1)
-                index_list = np.arange(start,start+96)
+                #start = np.random.choice(np.arange(start_frame,end_frame-95),1)
+                #index_list = np.arange(start,start+96)
+                index_list=[]
+                multiply = math.floor(num_frames/96)
+                for i in range(96):
+                    index = i*multiply+randint(0,multiply)
+                    index_list.append(index)
+
+
             else:
-                index_list = np.arange(start_frame,end_frame+1)
+                #index_list = np.arange(start_frame,end_frame+1)
                 shortage = 96-num_frames
                 dup = np.random.choice(np.arange(start_frame,end_frame+1),shortage)   
                 index_list = sorted(list(index_list) + list(dup))
@@ -107,26 +115,44 @@ class VideoDataset(Dataset):
         else:
             #index_list=np.random.choice(np.arange(start_frame,end_frame+1),size=96)
 
-            for cur in range(start_frame,end_frame+1):
+            if num_frames > 96:
+                #start = np.random.choice(np.arange(start_frame,end_frame-95),1)
+                #index_list = np.arange(start,start+96)
+                index_list=[]
+                multiply = math.floor(num_frames/96)
+                for i in range(96):
+                    index = i*multiply
+                    index_list.append(index)
+
+
+            else:
+                #index_list = np.arange(start_frame,end_frame+1)
+                shortage = 96-num_frames
+                #dup = np.random.choice(np.arange(start_frame,end_frame+1),shortage)   
+                dup = np.linspace(0,shortage,end_frame,endpoint=False)
+                dup = [int(x) for x in dup]
+                index_list = sorted(list(index_list) + list(dup))
+
+            for cur in index_list:
                 image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
         
         
         image_list=sorted(image_list)
       
-        final_image_list=[]
+        #final_image_list=[]
 
 
-        for i in range(sample_length):
-            index = int(round(i/96*(len(image_list))))
+        #for i in range(sample_length):
+          #  index = int(round(i/96*(len(image_list))))
           
-            final_image_list.append(image_list[index])
+         #   final_image_list.append(image_list[index])
         
-        image_list=final_image_list
+        #image_list=final_image_list
         
       
-        end_frame = min(end_frame,start_frame+sample_length-1)
+       # end_frame = min(end_frame,start_frame+sample_length-1)
     
-        
+    ################################  
         images = torch.zeros(sample_length, C, H, W)
         hori_flip = 0
 
@@ -166,5 +192,14 @@ class VideoDataset(Dataset):
         return len(self.annotations)
 
 
+if __name__=="__main__":
 
+    VD = VideoDataset("train")
+    for i in range(0,1000):
+         VD.__getitem__(i)
+         VD = VideoDataset("train")
+    VD = VideoDataset("test")
+
+    for i in range(0,300):
+         VD.__getitem__(i)
 
