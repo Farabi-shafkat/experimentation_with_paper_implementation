@@ -99,14 +99,15 @@ class VideoDataset(Dataset):
                 index_list=[]
                 multiply = math.floor(num_frames/96)
                 for i in range(96):
-                    index = i*multiply+randint(0,multiply)
+                    index =start_frame+ i*multiply+randint(0,multiply)
                     index_list.append(index)
 
 
             else:
                 #index_list = np.arange(start_frame,end_frame+1)
                 shortage = 96-num_frames
-                dup = np.random.choice(np.arange(start_frame,end_frame+1),shortage)   
+                dup = np.random.choice(np.arange(start_frame,end_frame+1),shortage) 
+                index_list = np.arange(start_frame,end_frame+1)  
                 index_list = sorted(list(index_list) + list(dup))
 
 
@@ -114,23 +115,30 @@ class VideoDataset(Dataset):
                 image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
         else:
             #index_list=np.random.choice(np.arange(start_frame,end_frame+1),size=96)
-
+            num_frames = end_frame-start_frame+1
+            #print(" debug num frames {}".format(num_frames))
             if num_frames > 96:
                 #start = np.random.choice(np.arange(start_frame,end_frame-95),1)
                 #index_list = np.arange(start,start+96)
                 index_list=[]
                 multiply = math.floor(num_frames/96)
                 for i in range(96):
-                    index = i*multiply
+                  
+                    index = start_frame+i*multiply
                     index_list.append(index)
 
 
             else:
-                #index_list = np.arange(start_frame,end_frame+1)
+                index_list = np.arange(start_frame,end_frame+1)
                 shortage = 96-num_frames
+                #print("{} {}".format(start_frame,end_frame))
                 #dup = np.random.choice(np.arange(start_frame,end_frame+1),shortage)   
-                dup = np.linspace(0,shortage,end_frame,endpoint=False)
+                dup = np.linspace(start_frame,end_frame,shortage,endpoint=False)
+                #print(dup)
+                #print(dup.shape)
                 dup = [int(x) for x in dup]
+                #print(dup)
+                #print(len(dup))
                 index_list = sorted(list(index_list) + list(dup))
 
             for cur in index_list:
