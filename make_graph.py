@@ -7,7 +7,7 @@ class graph(): #todo
     def __init__(self):
         self.training_loss=[]
         self.test_loss=[]
-        self.save_name=os.path.join(graph_save_directory,"version6.png")
+        self.save_name=os.path.join(graph_save_directory,"less-randomization.png")
         self.first_time=False
     def update_graph(self,training_loss,test_loss):
         self.training_loss.append(training_loss)
@@ -22,8 +22,8 @@ class graph(): #todo
             plt.legend()
             self.first_time = True
        # plt.show()
-            plt.ylim(0,300)
-            plt.xlim(0,20)
+            plt.ylim(0,350)
+            plt.xlim(0,50)
         plt.savefig(self.save_name)
 
 

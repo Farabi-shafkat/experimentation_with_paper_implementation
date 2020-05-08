@@ -98,8 +98,9 @@ class VideoDataset(Dataset):
                 #index_list = np.arange(start,start+96)
                 index_list=[]
                 multiply = math.floor(num_frames/96)
+                add=randint(0,multiply)
                 for i in range(96):
-                    index =start_frame+ i*multiply+randint(0,multiply)
+                    index =start_frame+ i*multiply+add
                     index_list.append(index)
 
 
@@ -107,6 +108,8 @@ class VideoDataset(Dataset):
                 #index_list = np.arange(start_frame,end_frame+1)
                 shortage = 96-num_frames
                 dup = np.random.choice(np.arange(start_frame,end_frame+1),shortage) 
+                #dup = np.linspace(start_frame,end_frame,shortage,endpoint=False)
+                #dup = [int(x) for x in dup]
                 index_list = np.arange(start_frame,end_frame+1)  
                 index_list = sorted(list(index_list) + list(dup))
 

@@ -36,12 +36,12 @@ def train_phase(train_dataloader, optimizer, epoch,l1,l2,action_criterions):
     model_avg_fc.train()
     model_reg.train()
     model_class.train()
-   
-    iteration = 0
-    ret=0
+    with torch.no_grad():
+        iteration = 0
+        ret=0
     #print(train_dataloader,"Ssssssssssss............................")
     for data in train_dataloader:
-        increment_seed()
+        #increment_seed()
         #print(data,"Ssssssssssss............................")
         #print(data["action"],"....................")
         with torch.no_grad():
