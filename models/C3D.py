@@ -49,7 +49,7 @@ class C3D(nn.Module):
         # self.fc7 = nn.Linear(4096, 4096)
         # self.fc8 = nn.Linear(4096, 487)
 
-        #self.dropout = nn.Dropout(p=0.5)
+        self.dropout = nn.Dropout(p=0.2)
 
         self.relu = nn.ReLU()
         # self.softmax = nn.Softmax(dim=1)
@@ -70,8 +70,8 @@ class C3D(nn.Module):
         h = self.relu(self.conv4b(h))
         h = self.pool4(h)
 
-        h = self.relu(self.conv5a(h))
-        h = self.relu(self.conv5b(h))
+        h = self.relu(self.dropout(self.conv5a(h)))
+        h = self.relu(self.dropout(self.conv5b(h)))
         h = self.pool5(h)
         #torch.flatten(h)
         # print('Shape of pool5: ', h.shape)
