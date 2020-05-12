@@ -234,7 +234,7 @@ def main(init_epoch):
         
         
        
-        increment_seed()
+        #increment_seed()
         print('-------------------------------------------------------------------------------------------------------')
         
         #train_phase(train_dataloader, optimizer, criterion, epoch)
