@@ -90,62 +90,25 @@ class VideoDataset(Dataset):
 ##########################
 
         image_list=[]
+        index_list=[]
+        hori_flip = 0
         if self.mode=='train':
            # index_list=np.random.choice(np.arange(start_frame,end_frame+1),size=96)
+
+            end_frame = end_frame + randint(-3,3)
+            start_frame = end_frame - 96
             num_frames = end_frame-start_frame+1
-            if num_frames > 96:
-                #start = np.random.choice(np.arange(start_frame,end_frame-95),1)
-                #index_list = np.arange(start,start+96)
-                index_list=[]
-                multiply = math.floor(num_frames/96)
-                add=randint(0,multiply)
-                for i in range(96):
-                    index =start_frame+ i*multiply+add
-                    index_list.append(index)
+            index_list = [ x for x in range(start_frame,end_frame)]
+            hori_flip = randint(0,1)
 
 
-            else:
-                #index_list = np.arange(start_frame,end_frame+1)
-                shortage = 96-num_frames
-                dup = np.random.choice(np.arange(start_frame,end_frame+1),shortage) 
-                #dup = np.linspace(start_frame,end_frame,shortage,endpoint=False)
-                #dup = [int(x) for x in dup]
-                index_list = np.arange(start_frame,end_frame+1)  
-                index_list = sorted(list(index_list) + list(dup))
-
-
-            for cur in index_list:
-                image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
         else:
-            #index_list=np.random.choice(np.arange(start_frame,end_frame+1),size=96)
+            start_frame = end_frame - 96
             num_frames = end_frame-start_frame+1
-            #print(" debug num frames {}".format(num_frames))
-            if num_frames > 96:
-                #start = np.random.choice(np.arange(start_frame,end_frame-95),1)
-                #index_list = np.arange(start,start+96)
-                index_list=[]
-                multiply = math.floor(num_frames/96)
-                for i in range(96):
-                  
-                    index = start_frame+i*multiply
-                    index_list.append(index)
+            index_list = [ x for x in range(start_frame,end_frame)]
 
-
-            else:
-                index_list = np.arange(start_frame,end_frame+1)
-                shortage = 96-num_frames
-                #print("{} {}".format(start_frame,end_frame))
-                #dup = np.random.choice(np.arange(start_frame,end_frame+1),shortage)   
-                dup = np.linspace(start_frame,end_frame,shortage,endpoint=False)
-                #print(dup)
-                #print(dup.shape)
-                dup = [int(x) for x in dup]
-                #print(dup)
-                #print(len(dup))
-                index_list = sorted(list(index_list) + list(dup))
-
-            for cur in index_list:
-                image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
+        for cur in index_list:
+            image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
         
         
         image_list=sorted(image_list)
@@ -165,7 +128,7 @@ class VideoDataset(Dataset):
     
     ################################  
         images = torch.zeros(sample_length, C, H, W)
-        hori_flip = 0
+        #hori_flip = 0
 
         for i in np.arange(0, sample_length):
          

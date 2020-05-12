@@ -19,7 +19,7 @@ beta=1
 gamma= 0.01
 train_batch_size = 3
 test_batch_size = 3
-num_epochs = 20
+num_epochs = 50
 sample_length = 96
 device=torch.cuda
 

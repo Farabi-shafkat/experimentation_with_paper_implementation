@@ -10,10 +10,10 @@ class AVG_FC(nn.Module):
     def __init__(self):
         super(AVG_FC, self).__init__()
         self.fc=nn.Linear(8192,4096)
-        self.dropout = nn.Dropout(p=0.2)
+       # self.dropout = nn.Dropout(p=0.2)
     def forward(self, x):   
        
-        x = F.relu(self.dropout(self.fc(x)))
+        x = F.relu(self.fc(x))
         return x
 
 
