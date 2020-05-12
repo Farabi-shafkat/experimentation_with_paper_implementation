@@ -108,7 +108,7 @@ class VideoDataset(Dataset):
             index_list = [ x for x in range(start_frame,end_frame)]
 
         for cur in index_list:
-            image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_again'.format(sample[0]), '{:d}.jpg'.format(cur)))
+            image_list.append(os.path.join(main_datasets_dir, 'frames','video{:d}_frames'.format(sample[0]), '{:d}.jpg'.format(cur)))
         
         
         image_list=sorted(image_list)

@@ -32,7 +32,3 @@ model_saving_dir="/content/drive/My Drive/what_and_how_well_you_learned_paper_im
 #/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/
 
 google_drive_dir="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation"
-def increment_seed():
-    global randomseed
-    
-    randomseed+=1
