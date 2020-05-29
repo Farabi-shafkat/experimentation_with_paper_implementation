@@ -96,14 +96,14 @@ class VideoDataset(Dataset):
            # index_list=np.random.choice(np.arange(start_frame,end_frame+1),size=96)
 
             end_frame = end_frame + randint(-3,3)
-            start_frame = end_frame - 96
+            start_frame = end_frame - sample_length
             num_frames = end_frame-start_frame+1
             index_list = [ x for x in range(start_frame,end_frame)]
             hori_flip = randint(0,1)
 
 
         else:
-            start_frame = end_frame - 96
+            start_frame = end_frame - sample_length
             num_frames = end_frame-start_frame+1
             index_list = [ x for x in range(start_frame,end_frame)]
 

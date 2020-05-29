@@ -36,29 +36,29 @@ def train_phase(train_dataloader, optimizer, epoch,l1,l2,action_criterions):
     model_avg_fc.train()
     model_reg.train()
     model_class.train()
-    with torch.no_grad():
-        iteration = 0
-        ret=0
+
+    iteration = 0
+    ret=0
     #print(train_dataloader,"Ssssssssssss............................")
     for data in train_dataloader:
         #increment_seed()
         #print(data,"Ssssssssssss............................")
         #print(data["action"],"....................")
-        with torch.no_grad():
-            true_final_score = data['label_final_score'].unsqueeze_(1).type(torch.FloatTensor).cuda()
-            video = data['video'].transpose_(1, 2).cuda()
+        
+        true_final_score = data['label_final_score'].unsqueeze_(1).type(torch.FloatTensor).cuda()
+        video = data['video'].transpose_(1, 2).cuda()
 
-            batch_size_now, C, frames, H, W = video.shape
-            clip_feats = torch.Tensor([]).cuda()
-            sum_feats = None
-            #clip_feats.unsqueeze_(0)
-            #truePos = data['action']['position'].cuda()
-            #trueTw = data['action']['tw_no'].cuda()
-            #trueRot = data['action']['rotation_type'].cuda()
-            #trueSS = data['action']['ss_no'].cuda()
-            #trueArm = data['action']['armstand'].cuda()
-            #c1,c2,c3,c4,c5=action_criterions
-            divide_by=0;
+        batch_size_now, C, frames, H, W = video.shape
+        clip_feats = torch.Tensor([]).cuda()
+        sum_feats = None
+        #clip_feats.unsqueeze_(0)
+        #truePos = data['action']['position'].cuda()
+        #trueTw = data['action']['tw_no'].cuda()
+        #trueRot = data['action']['rotation_type'].cuda()
+        #trueSS = data['action']['ss_no'].cuda()
+        #trueArm = data['action']['armstand'].cuda()
+        #c1,c2,c3,c4,c5=action_criterions
+        divide_by=0
         for i in np.arange(0, frames - 17, 16):
             clip = video[:, :, i:i + 16, :, :]
             #print(clip.shape," clip shape")
@@ -198,7 +198,7 @@ def test_phase(test_dataloader,epoch,l1,l2,action_criterions):
                 "rho" :rho
         }
         save_logs(epoch,iteration,loss_dic)
-        return aqa_loss_acc/iteration
+        return (aqa_loss_acc/iteration,rho)
         #print('Predicted scores: ', pred_scores)
        # print('True scores: ', true_scores)
         #print('Correlation: ', rho)
@@ -214,7 +214,7 @@ def main(init_epoch):
    # optimizer = optim.Adam(parameters_to_optimize,lr=0.01)
     #torch.optim.Adadelta(params, lr=1.0, rho=0.9, eps=1e-06, weight_decay=0)
    # optimizer = optim.Adadelta(parameters_to_optimize,lr=0.0001,weight_decay=0.5)
-    optimizer = optim.Adam(parameters_to_optimize,lr=0.0001)
+    optimizer = optim.Adam(parameters_to_optimize,lr=learning_rate)
     l1 =nn.L1Loss()
     l2 =nn.MSELoss()
     c1=nn.CrossEntropyLoss()
@@ -239,8 +239,8 @@ def main(init_epoch):
         
         #train_phase(train_dataloader, optimizer, criterion, epoch)
         tr_loss=train_phase(train_dataloader, optimizer, epoch,l1,l2,action_criterions)
-        ts_loss=test_phase(test_dataloader,epoch,l1,l2,action_criterions)
-        print(" average training loss:{} , average test loss:{}".format(tr_loss,ts_loss))
+        ts_loss,rho =test_phase(test_dataloader,epoch,l1,l2,action_criterions)
+        print(" average training loss:{} , average test loss:{} , RHO:{}".format(tr_loss,ts_loss,rho))
         grph.update_graph(tr_loss,ts_loss)
          #if epoch == 0:  # save models every 5 epochs
         grph.draw_and_save()
@@ -276,14 +276,14 @@ if __name__ == '__main__':
         graph_save_directory=os.path.join(google_drive_dir,graph_save_directory)
         model_saving_dir=os.path.join(google_drive_dir,model_saving_dir)
        # main_datasets_dir="/content"
-        init_epoch=11
+        init_epoch=None
         if init_epoch ==0:
              model_CNN_pretrained_dict = torch.load('/content/c3d.pickle')
         else:
-            model_CNN_pretrained_dict = torch.load('experimental_models/model_CNN{}.pth'.format(init_epoch))
-            model_avg_FC_pretrained_dict = torch.load('experimental_models/model_avg_fc{}.pth'.format(init_epoch))
-            model_reg_pretrained_dict = torch.load('experimental_models/model_reg{}.pth'.format(init_epoch))
-            model_class_pretrained_dict = torch.load('experimental_models/model_class{}.pth'.format(init_epoch))
+            model_CNN_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation//model_CNN{}.pth'.format(init_epoch))
+            model_avg_FC_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation//model_avg_fc{}.pth'.format(init_epoch))
+            model_reg_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation//model_reg{}.pth'.format(init_epoch))
+            model_class_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation//model_class{}.pth'.format(init_epoch))
 
     model_CNN = C3D()
     model_CNN_dict = model_CNN.state_dict()

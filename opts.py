@@ -18,11 +18,11 @@ alpha=1
 beta=1
 gamma= 0.01
 train_batch_size = 3
-test_batch_size = 3
-num_epochs = 50
-sample_length = 96
+test_batch_size = 5
+num_epochs = 103
+sample_length = 101
 device=torch.cuda
-
+learning_rate=0.0001
 #log_save_directory="logs"
 log_save_directory="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/logs"
 #graph_save_directory="graphs"
