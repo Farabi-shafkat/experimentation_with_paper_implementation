@@ -255,7 +255,12 @@ if __name__ == '__main__':
 
     model_CNN = C3D()
     model_CNN_dict = model_CNN.state_dict()
+    model_CNN_dict['conv5a1.weight'] =torch.mean( model_CNN_pretrained_dict['conv5a.weight'],dim=2).unsqueeze(2)
+    model_CNN_dict['conv5a1.bias'] = model_CNN_pretrained_dict['conv5a.bias']
    
+    model_CNN_dict['conv5b1.weight'] = torch.mean(model_CNN_pretrained_dict['conv5b.weight'],dim=2).unsqueeze(2)
+    model_CNN_dict['conv5b1.bias'] = model_CNN_pretrained_dict['conv5b.bias']
+
     model_CNN_pretrained_dict = {k: v for k, v in model_CNN_pretrained_dict.items() if k in model_CNN_dict}
     
 

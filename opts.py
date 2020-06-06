@@ -27,7 +27,7 @@ learning_rate=0.0001
 log_save_directory="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/logs"
 #graph_save_directory="graphs"
 graph_save_directory="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/graphs"
-model_saving_dir="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_models"
+model_saving_dir="/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_models_flat"
 #model_saving_dir = "experimental_models"
 #/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/
 
