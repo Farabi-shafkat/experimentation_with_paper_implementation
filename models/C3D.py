@@ -17,7 +17,7 @@
 
 import torch
 import torch.nn as nn
-from opts import *
+
 import torch.nn.functional as F
 class C3D(nn.Module):
     """
@@ -93,3 +93,14 @@ References
 [1] Tran, Du, et al. "Learning spatiotemporal features with 3d convolutional networks." 
 Proceedings of the IEEE international conference on computer vision. 2015.
 """
+
+
+if __name__ == "__main__":  
+  c3d = C3D()
+  size = 0
+  for param in c3d.parameters():
+        add =1 
+        for k in param.shape:
+            add*=k
+        size += add
+  print(size)

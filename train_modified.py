@@ -248,21 +248,28 @@ if __name__ == '__main__':
         if init_epoch ==0:
              model_CNN_pretrained_dict = torch.load('/content/c3d.pickle')
         else:
-            model_CNN_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_model/model_CNN{}.pth'.format(init_epoch))
-            model_avg_FC_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_model/model_avg_fc{}.pth'.format(init_epoch))
-            model_reg_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_model/model_reg{}.pth'.format(init_epoch))
-            model_class_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_model/model_class{}.pth'.format(init_epoch))
+            model_CNN_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_models/model_CNN{}.pth'.format(init_epoch))
+            model_avg_FC_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_models/model_avg_fc{}.pth'.format(init_epoch))
+            model_reg_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_models/model_reg{}.pth'.format(init_epoch))
+            model_class_pretrained_dict = torch.load('/content/drive/My Drive/what_and_how_well_you_learned_paper_imeplementation/experimental_models/model_class{}.pth'.format(init_epoch))
 
     model_CNN = C3D()
     model_CNN_dict = model_CNN.state_dict()
-    model_CNN_dict['conv5a1.weight'] =torch.mean( model_CNN_pretrained_dict['conv5a.weight'],dim=2).unsqueeze(2)
-    model_CNN_dict['conv5a1.bias'] = model_CNN_pretrained_dict['conv5a.bias']
+    model_CNN_dict['conv5aSP.weight'] =torch.mean( model_CNN_pretrained_dict['conv5a.weight'],dim=2).unsqueeze(2)
+    model_CNN_dict['conv5aSP.bias'] = model_CNN_pretrained_dict['conv5a.bias']
+
+    model_CNN_dict['conv5aTM.weight'] =torch.mean( model_CNN_pretrained_dict['conv5a.weight'],dim=(3,4)).unsqueeze(3).unsqueeze(4)
+    model_CNN_dict['conv5aTM.bias'] = model_CNN_pretrained_dict['conv5a.bias']
    
-    model_CNN_dict['conv5b1.weight'] = torch.mean(model_CNN_pretrained_dict['conv5b.weight'],dim=2).unsqueeze(2)
-    model_CNN_dict['conv5b1.bias'] = model_CNN_pretrained_dict['conv5b.bias']
+    model_CNN_dict['conv5bSP.weight'] = torch.mean(model_CNN_pretrained_dict['conv5b.weight'],dim=2).unsqueeze(2)
+    model_CNN_dict['conv5bSP.bias'] = model_CNN_pretrained_dict['conv5b.bias']
+
+    model_CNN_dict['conv5bTM.weight'] =torch.mean( model_CNN_pretrained_dict['conv5b.weight'],dim=(3,4)).unsqueeze(3).unsqueeze(4)
+    model_CNN_dict['conv5bTM.bias'] = model_CNN_pretrained_dict['conv5b.bias']
 
     model_CNN_pretrained_dict = {k: v for k, v in model_CNN_pretrained_dict.items() if k in model_CNN_dict}
     
+
 
    # print(model_CNN_pretrained_dict.keys())
     model_CNN_dict.update(model_CNN_pretrained_dict)

@@ -7,7 +7,7 @@ class graph(): #todo
     def __init__(self):
         self.training_loss=[]
         self.test_loss=[]
-        self.save_name=os.path.join(graph_save_directory,"c3d modified with avg weights.png")
+        self.save_name=os.path.join(graph_save_directory,"c3d separated modified with avg weights.png")
         self.first_time=False
     def update_graph(self,training_loss,test_loss):
         self.training_loss.append(training_loss)
